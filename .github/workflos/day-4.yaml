@@ -1,0 +1,27 @@
+name: Variables & Outputs
+
+on:
+  push:
+    paths:
+      - "**"
+    branches:
+      - main
+  
+
+jobs:
+  ci:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      
+      - name: grant permission
+        run: chmod +x script.sh
+
+      - name: run script
+        id:  version-number
+        run: version=$(./script.sh) >> $GITHUB_OUTPUT
+
+      - name: print value 
+        run: echo ${{ steps.versiion-number.outputs.version}}
+
