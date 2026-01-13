@@ -19,8 +19,8 @@ jobs:
 
       - name: run script
         id:  version-number
-        run: version=$(./script.sh) >> $GITHUB_OUTPUT
+        run: echo "version=$(./script.sh)" >> $GITHUB_OUTPUT
 
       - name: print value 
-        run: echo ${{ steps.versiion-number.outputs.version}}
+        run: echo ${{ steps.version-number.outputs.version}}
 
